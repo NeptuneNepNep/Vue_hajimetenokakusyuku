@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="root">
+    <h1>插值语法</h1>
+    <h3>你好,{{name}}</h3>
+    <hr>
+    <!--
+        插值语法用于解析标签体内容
+         写法{{}}
+
+        指令语法
+        插值语法去写动态标签的方法已经被移除🌶！
+        可以使用 v-bind:href 加入后url就是js表达式了
+        v-bind可以写成冒号
+        标签夹着个的内容就叫标签体
+    -->
+    <h1>指令语法</h1>
+    <a v-bind:href="url" >baidu</a>
+    <a :href="url" >baidu</a>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    new Vue({
+        el:'#root',
+        data: {
+            name:'jack',
+            url:'http://www.baidu.com',
+            hello:"你好"
+        }
+
+    })
+
+</script>
+</body>
+</html>
