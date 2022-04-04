@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <!--
+       单项指令不会改变
+      双向指令在页面value改变的时候会改变vue内部元素
+      但是v-model支持的元素类型有限
+      v-model 只可以支持有value值的表单元素哦
+      v-model的简写是v-model=
+    -->
+   <div id="root">
+        单项数据绑定<input type="text" v-bind:value="name">
+       <hr>
+        双项数据绑定<input type="text" v-model="name">
+   </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+    new Vue({
+        el:'#root',
+        data: {
+            name:'尚硅谷'
+        }
+
+
+
+
+    })
+
+</script>
+</body>
+</html>

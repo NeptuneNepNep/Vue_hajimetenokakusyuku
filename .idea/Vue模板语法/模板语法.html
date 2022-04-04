@@ -18,11 +18,12 @@
         可以使用 v-bind:href 加入后url就是js表达式了
         v-bind可以写成冒号
         标签夹着个的内容就叫标签体
+        多级结构类型类似json
     -->
     <h1>指令语法</h1>
     <a v-bind:href="url" >baidu</a>
     <a :href="url" >baidu</a>
-
+    <a :href="school.url">baidu</a>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -32,7 +33,11 @@
         data: {
             name:'jack',
             url:'http://www.baidu.com',
-            hello:"你好"
+            hello:"你好",
+            school: {
+                url:'http://www.baidu.com'
+
+            }
         }
 
     })
