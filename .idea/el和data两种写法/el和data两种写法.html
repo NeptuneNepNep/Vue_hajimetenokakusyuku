@@ -15,13 +15,14 @@
 
 <script>
    const v = new Vue({
-        el:'#root',
+        //el:'#root',第一种写法
         data: {
             name:'尚硅谷'
         }
     })
    console.log(v);
-
+    //第二种写法 挂载
+    v.$mount('#root')
 </script>
 </body>
 </html>
