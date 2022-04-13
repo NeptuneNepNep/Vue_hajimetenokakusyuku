@@ -16,13 +16,21 @@
 <script>
    const v = new Vue({
         //el:'#root',第一种写法
-        data: {
+        /*data: {
             name:'尚硅谷'
-        }
+        } 第一种写法对象式*/
+       //第二种写法函数式写法
+       data:function() {
+           return {
+               name:'Nihao'
+           }
+
+       }
     })
    console.log(v);
     //第二种写法 挂载
-    v.$mount('#root')
+    v.$mount('#root');
+
 </script>
 </body>
 </html>
