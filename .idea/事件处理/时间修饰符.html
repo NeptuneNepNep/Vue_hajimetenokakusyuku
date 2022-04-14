@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #root {
+        background-color: aqua;
+
+
+    }
+    * {
+        margin-top:20px;
+
+    }
+</style>
+<body>
+<div id="root" @click.once="info($event)">
+    <h2>欢迎来到{{name}}学习</h2>
+    <a href="http://www.baidu.com" @click.stop="info($event)">baidu</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    /*
+    * .prevent可以阻止默认事件
+    * .stop阻止事件冒泡
+    * .once事件触发一次
+    * .capture使用事件的捕获模式
+    * .self 只有event.target操作的元素是触发条件
+    * .passive事件的默认行为立刻执行 无需等待事件回调完毕
+    * */
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            name:'百度'
+
+        },
+        methods: {
+            info(e) {
+
+                vm._data.name=e.x;
+            }
+
+        }
+
+    })
+
+
+
+</script>
+</body>
+</html>
