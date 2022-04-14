@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+        <button v-on:click="showInfo1">点我提示1</button>
+        <button @click="showInfo2(66,$event)">点我提示2</button>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //v-on:click vue管理的函数最好用箭头函数 要不然函数里边this不是vm而是window
+    //v-on:click的简写形式 是 @click
+    //想要传参数可以直接在函数名上编写参数 想传参就乖乖把括号加上 想加event可以写在html函数中
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            name:'尚硅谷'
+
+        },
+        methods: {
+              showInfo1(event){
+                alert('!')
+            },
+            showInfo2(a,event) {
+                  alert(a);
+                  console.log(event);
+            }
+        }
+
+
+    })
+
+
+
+</script>
+
+</body>
+</html>
