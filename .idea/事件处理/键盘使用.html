@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root" >
+    <h2>欢迎来到{{name}}学习</h2>
+    <input type="text" placeholder="按下回车键提示输入" @keydown.enter="showinfo($event)">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //可以直接写 v-on:keydown keyup
+    //其他绑定监听的方法:.13(使用keyCode 不被推荐 因为keycode已经被从web标准移除了！！！以后也许就用不了了！！)
+    //vue 给常用摁键写了别名 如果在九个按键之外 不能使用别名了
+    //enter e.key是按键名字 e.keyCode是按键的码
+    //delete 多个单词写法应该用-截开
+    //esc
+    //tab
+    //space
+    //up
+    //down
+    //left
+    //right
+    //系统修时间 crtl alt shift meta 可以配合keyup需要同时 按keydown可以先按完再来
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            name:"铁皮带专"
+
+        },
+        methods: {
+            showinfo(event) {
+
+                console.log(event.target.value);
+
+            }
+
+        }
+
+
+    })
+
+
+</script>
+</body>
+</html>
