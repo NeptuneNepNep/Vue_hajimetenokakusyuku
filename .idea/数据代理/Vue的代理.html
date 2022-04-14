@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <h2>学校名称:{{name}}</h2>
+        <input :value="address">
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //创建Vue实例
+    //vm中的属性类似于defineproperty 有getter和setter
+    //vm本质上就是代理呀
+    //数据代理当改变vue实例内部的属性的時 实际上vm将数据存在了 vm._data里边有属性改变它页面改变的原因就是数据代理哦
+    //vm首先会准备很多东西 其中包括_data 直接把data放到Vue对象下划线data里面 数据代理干的事就是把data放到vm里边一份 目的就是让编码简单
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            name:'shang',
+            address:'peiking'
+        }
+
+
+    })
+
+
+</script>
+</body>
+</html>
