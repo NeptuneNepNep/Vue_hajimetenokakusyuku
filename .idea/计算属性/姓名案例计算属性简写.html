@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        姓:<input type="text" v-model:value="firstName"><br/>
+        名:<input type="text" v-model:value="lastName">
+        姓名:<span>{{fullName}}</span>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            //如何实现更多功能 vue中模板应该只有简单的表达式 不能写太长的模板表达式哦
+            //对于vue来说 data里的东西就是属性
+            const vm = new Vue({
+                el:'#root',
+                data: {
+                    firstName:'张',
+                    lastName:'三'
+                },
+                //computed用于计算
+                /*
+                computed: {
+                    fullName: {
+                        //get的作用是当有人读取fullName时调用且返回值就是fullName
+                        //所依赖的数据发生变化时就调用set和get
+                        get(){
+                            return this.firstName+'='+this.lastName;
+                        },
+                        set(value){
+                            const arr = value.split('-');
+                            this.firstName = arr[0];
+                            this.lastName = arr[1];
+                        }
+                    }
+
+                }
+                //如何拿到data里边的元素呢?
+               */
+                //简写 只考虑读取不考虑修改才用简写
+                computed: {
+                    fullName() {
+                        return this.firstName + '-' + this.lastName;
+
+                    }
+                }
+            })
+
+
+
+        </script>
+
+    </div>
+</body>
+</html>
