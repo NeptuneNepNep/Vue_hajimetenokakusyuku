@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}{{times}}</h2>
+        <button @click="changeWeather">切换天气</button>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            //如何实现更多功能 vue中模板应该只有简单的表达式 不能写太长的模板表达式哦
+            //computed要写在方法的前面
+            const vm = new Vue({
+                el:'#root',
+                data: {
+                   isHot:true,
+                    times:0
+                },
+                computed: {
+                    info() {
+                        return this.isHot ? '炎热' : '凉爽';
+                    }
+                },
+                methods: {
+                    changeWeather() {
+                        ++this.times;
+                        this.isHot = !this.isHot;
+
+                    }
+                },
+                    //watch的作用是监视 可以通过这种写法在对象改变值的时候调用回调函数
+                    watch: {
+                       info: {
+                            immediate:true,//租用是初始化时调用以先handler
+                            //isHot修改的时候改变
+                            handler(newValue,oldValue) {
+                                console.log('isHot被修改了',newValue,oldValue);
+
+                            }
+
+                        }
+
+                    },
+
+
+
+
+            })
+
+
+
+        </script>
+
+    </div>
+</body>
+</html>
