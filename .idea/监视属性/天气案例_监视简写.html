@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click="changeWeather">切换天气</button>
+        <h3>a的值是{{numbers.a}}</h3>
+        <h3>b的值是{{numbers.b}}</h3>
+        <!--简单的数据处理可以直接写成这样!-->
+        <button @click="numbers.a++">让a+1</button>
+        <button @click="numbers={a:20,b:100}">让b+1</button>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            //如何实现更多功能 vue中模板应该只有简单的表达式 不能写太长的模板表达式哦
+            //computed要写在方法的前面
+            const vm = new Vue({
+                el:'#root',
+                data: {
+                   isHot:true,
+                    numbers: {
+                       a:1,
+                        b:1
+                    }
+                },
+                computed: {
+                    info() {
+                        return this.isHot ? '炎热' : '凉爽';
+                    }
+                },
+                methods: {
+                    changeWeather() {
+
+                        this.isHot = !this.isHot;
+
+                    }
+                },
+                    //watch的作用是监视 可以通过这种写法在对象改变值的时候调用回调函数
+                   watch: {
+                       //正常的写法
+                       /*
+                       isHot:{
+                        handler(newValue,oldValue) {
+                            console.log('isHot');
+                        }
+                        },
+                       //监视numbers
+                       //深度监视默认不检测内部 Vue之神可以检测内部 但是watch对象不实现
+                            numbers: {
+                            //deep属性开启深度监视 监视内部数据（所有）
+                            deep:true,
+                            handler(){
+                              console.log('numbers改变了')
+                            }
+
+                            },
+                            //只监视a不监视b 方法(本质上是监视二级元素)
+                            'numbers.a':{
+                                handler(){
+                                    console.log('a变了');
+                                }
+                            }
+
+                        */
+                       /*简写直接写一个函数就相当于handler（只有handler）
+                       isHot(newvalue,oldvalue) {
+                           console.log(newvalue+'<-'+oldvalue);
+
+                       }
+                        */
+
+
+
+                    },
+
+
+
+
+
+            })
+            /*外部配置
+            vm.$watch('info',{
+                mmediate:true,//租用是初始化时调用以先handler
+                //isHot修改的时候改变
+                handler(newValue,oldValue) {
+                    console.log('isHot被修改了',newValue,oldValue);
+            }
+            })
+、           */
+            //外部简写 强烈建议不写箭头函数
+            vm.$watch('isHot',function (newValue,oldValue) {
+                console.log('isHot被修改了',newValue,oldValue);
+
+            });
+
+
+        </script>
+
+    </div>
+</body>
+</html>
