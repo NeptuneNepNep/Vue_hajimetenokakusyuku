@@ -32,7 +32,7 @@
                     }
                 },
                     //watch的作用是监视 可以通过这种写法在对象改变值的时候调用回调函数
-                    watch: {
+                   /* watch: {
                        info: {
                             immediate:true,//租用是初始化时调用以先handler
                             //isHot修改的时候改变
@@ -43,13 +43,20 @@
 
                         }
 
-                    },
+                    },*/
 
 
 
 
             })
-
+            //外部配置
+            vm.$watch('info',{
+                mmediate:true,//租用是初始化时调用以先handler
+                //isHot修改的时候改变
+                handler(newValue,oldValue) {
+                    console.log('isHot被修改了',newValue,oldValue);
+            }
+            })
 
 
         </script>
