@@ -43,6 +43,12 @@
         <div class="basic" :class="classArr" >{{name}}</div>
         <!-- 绑定class 对象写法 适用于绑定样式个数确定 名字也确定 但要动态决定是否启用-->
         <div class="basic" :class="classObj" >{{name}}</div>
+        </br>
+        <!--样式绑定 对象写法!-->
+        <div class="basic" v-bind:style="styleObj" >{{name}}</div>
+        </br>
+        <!--样式绑定 数组写法!-->
+        <div class="basic" v-bind:style="[styleObj,styleObj2]" >{{name}}</div>
 
     </div>
 </body>
@@ -59,8 +65,14 @@
                happy:true,
                 false:false
 
-            }
-
+            },
+            styleObj:{
+            fontSize:'40px'
+    },
+            styleObj2:{
+                fontSize:'40px',
+                backgroundColor:'aqua'
+            },
         },
         methods: {
         changeMood() {
