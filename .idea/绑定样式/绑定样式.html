@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .basic {
+        height: 100px;
+        width: 100px;
+        border: solid black 1px;
+
+    }
+    .happy {
+        height: 100px;
+        width: 100px;
+        background-color: aqua;
+        border: solid black 1px;
+
+    }
+    .sad {
+        height: 100px;
+        width: 100px;
+        border: solid black 1px;
+        background-color: saddlebrown;
+
+    }
+    .normal {
+        height: 100px;
+        width: 100px;
+        border: solid black 1px;
+        background-color: green;
+
+    }
+
+</style>
+<body>
+    <div id="root">
+        <!-- 绑定class 字符串写法 适用于类名不确定动态决定!-->
+        <div :class="mood" @click="changeMood">{{name}}</div>
+        <br/>
+        <!-- 绑定class 数组写法 适用于绑定样式不确定 名字也不确定 数量也不确定!-->
+        <div class="basic" :class="classArr" >{{name}}</div>
+        <!-- 绑定class 对象写法 适用于绑定样式个数确定 名字也确定 但要动态决定是否启用-->
+        <div class="basic" :class="classObj" >{{name}}</div>
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    const vm = new Vue({
+       el:'#root',
+        data:{
+           name:'你好',
+            mood:'basic',
+            classArr: ['happy','sad','normal'],
+            classObj: {
+               happy:true,
+                false:false
+
+            }
+
+        },
+        methods: {
+        changeMood() {
+            const arr = ['happy','sad','normal'];
+            let ra = Math.floor(Math.random()*3);
+            this.mood = arr[ra];
+        }
+    }
+
+    });
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        姓:<input type="text" v-model="firstName"><br/>
+        名:<input type="text" v-model="lastName">
+        姓名:<span>{{firstName}}-{{lastName}}</span>
+        <input v-model="fullName">
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //如何实现更多功能 vue中模板应该只有简单的表达式 不能写太长的模板表达式哦
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            firstName:'张',
+            lastName:'三',
+            data1:2,
+            fullName:'张-三'
+        },
+        computed: {
+
+        },
+        //一下代码是命令时而且是重复的 如果是计算属性的话好多了不是吗？有watch和computed当中能用计算就计算
+        // 如果需要使用定时器用watch就十分的方便就是watch更适合异步问题
+        //重要的原则 Vue管理的函数不要写成箭头函数
+        //不被Vue管理的函数就写成箭头函数好一点
+        //上述两条目标都是让this指向vm
+        watch: {
+            firstName(newValue) {
+                this.fullName = newValue + '-' +vm.lastName;
+            },
+            lastName(val) {
+                setTimeout(()=> {
+                    this.fullName = vm.firstName + '-' +val;
+                },1000)
+
+
+            }
+        }
+
+    })
+
+
+
+</script>
+
+</html>
