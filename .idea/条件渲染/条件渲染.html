@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--使用v-show进行条件渲染!-->
+<div id="root">
+    <button @click="n++">点我n+1</button>
+    <!--
+    <h2 v-show="a">欢迎来到{{n}}</h2>
+    使用v-if进行条件渲染!
+    <h2 v-if="b">哈哈</h2>
+    使用 if else if 实现 第一个成立就不判断下面的了
+    v-else不要判断 没意义
+    中间不可以加普通元素
+    如果使用template写就不会影响结构 但是只能配合v-if
+    -->
+    <div v-if="n===1">1</div>
+    <div v-else-if="n===2">2</div>
+    <div v-else-if="n===3">3</div>
+    <div v-else>?</div>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:"#root",
+        data:{
+            name:'Nihao',
+            a:false,
+            b:false,
+            n:0
+        }
+
+
+    })
+
+</script>
+</html>
