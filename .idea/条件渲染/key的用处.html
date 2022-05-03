@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+    <button @click="add">添加老刘</button>
+    <ul>
+        <!-- 准备了容器 v-for 遍历 一定要使用key动态绑定绑定的一定要不一样 请使用p.index-->
+        <!--传入多个值加括号是好习惯偶-->
+        <!--解决复用问题应该使用diff算法
+        key的作用 key是虚拟DOM的标识 数据变化时候Vue会根据新数据生成新的虚拟DOM内容没变直接用原来的DOM
+        如果变了就生成新的真实DOM
+        index为key如果出现输入类DOM会出现错误的更新
+        开发中最好使用存在的唯一标识当key用
+
+
+      -->
+        <li v-for="(p,index) in persons" :key="p.id">
+
+            {{p}}
+            {{p.id}}
+            <input type="text">
+        </li>
+
+    </ul>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            persons:[
+                {id:'001',name:'张三',age:18},
+                {id:'002',name:'张2三',age:28},
+                {id:'003',name:'张3三',age:38},
+
+            ],
+
+        },
+        methods: {
+            add() {
+                const p = {id:'004',name:'张3三',age:38};
+                this.persons.unshift(p);
+
+            }
+        }
+
+    })
+
+</script>
+</html>
