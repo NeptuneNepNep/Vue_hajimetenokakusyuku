@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="root">
+    <input type="text" placeholder="请输入" v-model="keyWord">
+    <button @click="sortType = 1">升序</button>
+    <ul>
+        <!-- 准备了容器 v-for 遍历 一定要使用key动态绑定绑定的一定要不一样 请使用p.index-->
+        <!--传入多个值加括号是好习惯偶-->
+        <!--解决复用问题应该使用diff算法
+        key的作用 key是虚拟DOM的标识 数据变化时候Vue会根据新数据生成新的虚拟DOM内容没变直接用原来的DOM
+        如果变了就生成新的真实DOM
+        index为key如果出现输入类DOM会出现错误的更新
+        开发中最好使用存在的唯一标识当key用
+
+
+      -->
+        <li v-for="(p,index) in filPersons" :key="p.id">
+
+            {{p}}
+            {{p.id}}
+            <input type="text">
+        </li>
+
+    </ul>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //watch的实现
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            persons:[
+                {id:'001',name:'张三',age:118},
+                {id:'002',name:'张2三',age:28},
+                {id:'003',name:'张3三',age:38},
+
+            ],
+            keyWord:'',
+            sortType:0
+
+
+        },
+        /*
+        watch: {
+            keyWord(val) {
+               this.filPersons = this.persons.filter((p)=>{
+                    return p.name.indexOf(val) !==-1;
+                })
+
+
+
+            }
+         */
+
+        computed:{
+            filPersons(){
+              const arr =  this.persons.filter((p)=> {
+                   return p.name.indexOf(this.keyWord) !== -1
+               })
+                if(this.sortType) {
+                    arr.sort((p1,p2)=>{
+                        return p2.age-p1.age
+                    })
+                }
+                return arr;
+
+            }
+        }
+
+
+
+
+    })
+
+</script>
+</html>
