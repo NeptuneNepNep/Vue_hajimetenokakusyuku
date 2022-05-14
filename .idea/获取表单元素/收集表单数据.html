@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+  <form @submit.prevent="test" action="http://www.baidu.com">
+      <!--label for 进行访问-->
+      <label for="demo">账号:</label>
+          <input type="text" id="demo" v-model="userInfo.account">
+      <hr>
+      性别:男<input type="radio" name="sex" value="male" v-model="userInfo.sex">
+      女<input type="radio" name="sex" value="female" v-model="userInfo.sex">
+      <br>
+      密码: <input type="text" v-model="userInfo.password">
+      <br>
+      爱好:吸毒<input type="checkbox" v-model="userInfo.hobby" value="drug">草粉<input type="checkbox" v-model="userInfo.hobby" value="fuck">
+      <br>
+      校区:
+      <select v-model="userInfo.location">
+          <option value="peiking">北京</option>
+          <option value="shenzhen">深圳</option>
+          <option value="wuhan">武汉</option>
+
+
+      </select>
+      <br>
+      其他信息
+      <textarea v-model="userInfo.textbox">
+
+      </textarea>
+      <br>
+      <input type="checkbox" v-model="userInfo.yes">
+      阅读并接受<a href="http://www.baidu.com" >《用户协议》</a>
+      <input type="submit" >
+  </form>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+const vm = new Vue({
+    el:'#root',
+    data:{
+        userInfo: {
+            account: '',
+            password: '',
+            //hobby的初始值会影响html和vue 建议吧勾选框写成数组 写成字符串神仙难救
+            hobby: [],
+            sex: '',
+            location: [],
+            yes: '',
+            textbox: '',
+
+
+        }
+    },
+    methods:{
+        test(){
+            //一般提交表单的做法 可以直接使用_data但是不推荐
+            //console.log(JSON.stringify(vm._data));
+            //另外一种方法 vm data属性用userInfo之类的包裹但是用到v-model的地方都要加入 后面的userInfo
+            console.log(JSON.stringify(this.userInfo));
+        },
+
+
+    }
+
+})
+
+</script>
+</body>
+</html>
