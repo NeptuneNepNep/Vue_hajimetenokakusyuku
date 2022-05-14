@@ -61,6 +61,7 @@ const vm = new Vue({
             //一般提交表单的做法 可以直接使用_data但是不推荐
             //console.log(JSON.stringify(vm._data));
             //另外一种方法 vm data属性用userInfo之类的包裹但是用到v-model的地方都要加入 后面的userInfo
+            //v-model.number允许数据只可以收集数字 加入lazy可以立刻反应 trim可以去掉前后空格
             console.log(JSON.stringify(this.userInfo));
         },
 
