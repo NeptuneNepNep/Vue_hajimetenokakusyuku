@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+    <h2>学校名称:{{name}}</h2>
+    <h2>学校地址{{address}}</h2>
+    <h3>校长{{school.leader}}</h3>
+
+    <button @click="addsexw">添加性别女</button>
+    <button @click="addsexm">添加性别男</button>
+    <button @click="addsexn">添加性别不男不女</button>
+    <button @click="addleader">添加校长</button>
+    <button @click="changehobbies">改变爱好吸毒为嫖娼</button>
+    <hr>
+    <h2>学生姓名{{student.name}}</h2>
+    <h2>年龄{{student.rage}}</h2>
+    <h2>性别{{student.sex}}</h2>
+
+    <h2>朋友</h2>
+    <ul>
+        <li v-for="(f,index) in student.friends" :key="index">
+            {{f.name}}
+            {{f.rage}}
+        </li>
+
+    </ul>
+    <h2>爱好</h2>
+    <ul>
+        <li v-for="(h,index) in student.hobbies" :key="index">
+            {{h}}
+        </li>
+
+    </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //vue访问a.b有a就不会报错 但是没有a必然报错
+    const vm = new Vue( {
+        el:'#root',
+        data: {
+            name:'尚硅谷',
+            address:'北京',
+            school:{
+
+            },
+            student: {
+                name:'王',
+                rage:20,
+                sage:40,
+                friends: [{name:'李',rage:15},
+                    {name:'原批',rage:28}],
+                hobbies:['抽烟','吸毒','草粉'],
+            },
+
+
+        },
+        methods: {
+            addsexw(){
+                vm.$set(vm._data.student,'sex','女');
+            },
+            addsexm(){
+                Vue.set(vm._data.student,'sex','男');
+            },
+            addsexn(){
+                this.$set(vm._data.student,'sex','不男不女');
+            },
+            addleader(){
+                //直接想vm vm.data 加对象是不可以的
+                /*
+                this.set(vm._data,'leader','哈哈')
+                代码不合法
+
+                 */
+                this.$set(vm.school,'leader','你妈死了');
+            },
+            changehobbies(){
+                this.student.hobbies.splice(1,2,'嫖娼','嫖娼');
+
+            }
+
+        }
+
+
+
+
+    });
+    //有一个api vm.$set 可以改值价值和 Vue.set()作用一样
+    //vue对侦听数组变更方法有包裹 同时会触发试图更新 包括 push po shift unshift splice sort reverse
+
+</script>
+
+</body>
+</html>
