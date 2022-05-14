@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+    <button @click="student.age++">年龄加1</button>
+    <button @click.once="deleteluka">不喜欢luka了</button>
+    <button @click="addSex">写性别</button>
+    <button @click="addFriend">添加一个朋友</button>
+    <button @click="changeName">改变朋友名</button>
+
+    <h1>信息</h1>
+    <h3>姓名:{{student.name}}</h3>
+    <h3>年龄:{{student.age}}</h3>
+    <h3>性别:{{student.sex}}</h3>
+    <h3>爱好</h3>
+
+    <li v-for="(h,index) in student.hobbies" :key="index">
+        {{h}}
+    </li>
+    <h3>朋友</h3>
+    <li v-for="(f,index) in student.friends" :key="index">
+        {{f.name}}--{{f.age}}
+    </li>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    const vm = new Vue({
+       el:'#root',
+       data:{
+           student:{
+               name:'hatsune miku',
+               age:16,
+               hobbies:['葱を回る','ボーカル','ルカちゃん'],
+               friends:[
+                   {name:'rin',age:14},
+                   {name:'ren',age:14}
+               ],
+
+           }
+
+
+       },
+        methods: {
+           deleteluka() {
+               vm.student.hobbies.splice(2,1,'あなた');
+
+           },
+            addSex(){
+               Vue.set(vm.student,'sex','onnna');
+            },
+            addFriend(){
+                vm.student.friends.unshift({name:'rin',age:14});
+            },
+            changeName(){
+                vm.student.friends[0].name='貴方';
+
+            }
+        },
+
+
+
+    });
+
+</script>
+</html>
