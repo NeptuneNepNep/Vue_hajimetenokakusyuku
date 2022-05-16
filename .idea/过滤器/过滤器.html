@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <button @click="changetime">改变时间</button>
+        <h2>显示格式化后的时间{{nowtime.time}}</h2>
+        <h2>{{ftime}}</h2>
+        <h3>过滤器实现{{nowtime.time|timeFormat('YYYY_MM_DD')|fin}}</h3>
+
+    </div>
+    <div id="root2">{{name|newName}}
+        <h3 :x="msg|newName">{{msg|newName}}</h3>
+    </div>
+</body>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script src="https://unpkg.com/dayjs"></script>
+<script>
+    //全局过滤器 需要在实例化之前 过滤器有一个有点就是可以复用
+    //也可以配合v-bind但是很罕见！！ 不可以配合v-model!!
+    //使用场合 处理简单的数据 复杂的话就是用methods 或者 computed
+    Vue.filter('newName',function (value){
+        return value.slice(0,2);
+
+    })
+    const vm = new Vue({
+        el:'#root',
+        data: {
+            nowtime:{
+                time:Date.now()
+            }
+
+        },
+        computed: {
+            ftime: {
+                get() {
+                    return dayjs(this.nowtime.time).format();
+                },
+                set() {
+                    return dayjs(this.nowtime.time).format();
+                }
+            }
+
+
+
+        },
+        methods:{
+            changetime(){
+                setInterval(()=> {
+                        this.$set(vm._data.nowtime, 'time', Date.now());
+                    },1
+                )
+            },
+
+        },
+        //过滤器可以对数据进行加工
+        //使用过滤器可以方便？也许吧 过滤器可以传值 value是前面值 后边写括号里要传的值 可以连续写嵌套 可是这是局部过滤器
+        filters:{
+            timeFormat(value,str){
+                return dayjs(value).format(str);
+            },
+            fin(value){
+                return value.slice(0,4);
+            }
+
+        }
+
+
+    });
+    const vm2 = new Vue({
+        el:'#root2',
+        data:{
+            name:'hello',
+            msg:'wocao'
+        }
+
+
+    })
+
+
+
+</script>
+</html>
