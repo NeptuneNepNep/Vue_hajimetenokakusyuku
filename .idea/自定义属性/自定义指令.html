@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+    <!--
+    定义一个v-big指令 和v-html 类似但是会把绑定的数值扩大十倍
+    需求2 v-fbind 和v-bind类似 但是可以获取焦点
+
+    -->
+    <h2>当前的n值是<span v-text="n"></span></h2>
+    <h2>放大后的n是<span v-big="n"></span></h2>
+    <button @click="bigger($event)">n+1</button>
+    <hr>
+    <input type="text" v-bind:value="n">
+    <input type="text" v-fbind:value="n">
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<script>
+new Vue({
+    el:'#root',
+    data:{
+        n:1,
+
+
+    },
+    methods:{
+        bigger(e){
+            this.n++;
+            alert(e.x);
+
+        }
+
+
+    },
+    //自定义指令函数式写法 不靠返回值 靠参数竟然可以直接操作DOM!!
+    //被调用的时机:成功绑定DOM时 重新解析时
+    //实际上是简写型 不能操作一些元素
+    directives:{
+        big(element,binding){
+            element.innerHTML=10*binding.value;
+            console.log(binding.value);
+        },
+        //对象型写法
+        fbind:{
+            bind(element,binding){
+                element.value=10*binding.value;
+                element.focus();
+                console.log('bind');
+            },
+            insert(element,binding){
+
+                element.focus();
+                console.log('insert');
+            },
+            update(element,binding){
+                element.value=10*binding.value;
+                element.focus();
+                console.log('update');
+            }
+
+        }
+
+    }
+
+
+
+})
+
+</script>
+</html>
