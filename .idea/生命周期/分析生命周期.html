@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div id="root">
+    <h2>n值是{{n}}</h2>
+    <button @click="add">n+1</button>
+
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            n:1,
+
+        },
+        methods:{
+            add(){
+                this.n++;
+
+            }
+
+        },
+        //数据监控和数据代理创建之前
+        beforeCreate(){
+            console.log('beforeCreate');
+            console.log(this);
+
+        },
+        //在数据监控和数据代理创建之后
+        created(){
+            console.log('Create');
+            console.log(this);
+        },
+        //这个时候操作DOM屁用没有
+        beforeMounted(){
+            console.log('beforeMounted');
+            console.log(this);
+
+        }
+        //不写template的话el的外部HTML会作为模板
+
+
+    })
+
+</script>
+</html>
