@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+  <h2 :style="{opacity}">欢迎学习</h2>
+  <button @click="change">点我</button>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+  const vm = new Vue({
+    el:'#root',
+    data:{
+      opacity:1
+
+    },
+    methods: {
+      change: function(){
+        setInterval(()=>{
+          vm.opacity-=0.01;
+          if(vm.opacity<=0){
+            vm.opacity=1;
+          }
+        },10);
+
+      }
+
+    },
+    //挂载 函数 vue完成模板解析并吧正式DOM放入页面后调入这个
+      // 可以不只挂载一个函数 这些函数被成为生命周期回调函数
+      //生命周期函数不可更改 这叫生命周期钩子
+      mounted(){
+          setInterval(()=>{
+              vm.opacity-=0.01;
+              if(vm.opacity<=0){
+                  vm.opacity=1;
+              }
+
+      },16)
+      }
+
+
+  })
+  //原生js实现 蠢！
+  /*
+  setInterval(()=>{
+            vm.opacity-=0.01;
+            if(vm.opacity<=0){
+              vm.opacity=1;
+            }
+            },10);
+  */
+</script>
+</html>
