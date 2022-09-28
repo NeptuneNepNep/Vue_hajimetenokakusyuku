@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件嵌套</title>
+</head>
+<body>
+<div id="root">
+    <app></app>
+</div>
+</body>
+<script src="../vue.js"></script>
+<script>
+    //组件嵌套 被嵌套的要写在前面
+    //嵌套主键的注册要在父层嵌套
+    const hello = ({name:'hello',template:`<h1>你好</h1>`});
+    const student = Vue.extend({
+        name:'student',
+        template:`
+            <div><p>{{name}}</p><hello></hello></div>
+
+        `,
+        data() {
+            return {
+                name:'你好'
+            }
+
+        },
+        components:{
+            hello
+        }
+    }
+    );
+    const school = Vue.extend({
+            name:'at',
+            template:`
+            <div><p>{{name}}</p>
+            <student></student>
+            </div>
+
+        `,
+            data() {
+                return {
+                    name:'你好'
+                }
+
+            },components:{
+                student
+        }}
+
+    );
+    //一般采取app管理所有组件 vm就写个app就完了 标准化开发
+    //一般采取app管理所有组件 vm就写个app就完了 标准化开发
+    const app = Vue.extend({
+        template:`<school></school>`,
+        components:{
+            school,
+            hello
+        }
+
+    })
+    const vm = new Vue( {
+        el:'#root',
+        components: {
+           app
+
+        },
+        data: {
+            name:"a"
+        }
+    })
+</script>
+</html>

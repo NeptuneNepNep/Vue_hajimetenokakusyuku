@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <xuexiao></xuexiao>
+    </div>
+</body>
+<script src="../vue.js">
+
+
+</script>
+<script>
+//回避名称和html相同的元素
+//组件当中写的data必须用函数式
+//组件而一再使用的时候去命名 也可以在定义的时候就明明==命名
+//可以使用name指定组件在开发者工具当中的名字 大型项目放错乱
+//自闭和的标签也可以直接用组件 不过使用自比合不使用脚手架会让后续渲染出问题
+//简写方法可以连vue.extend都不写 直接写对象 vue会自动补一个vue.extend()
+    const school = Vue.extend({
+        name:at,
+        template:`
+            <div><p>{{name}}</p></div>
+        `,
+        data() {
+            return {
+                name:'你好'
+            }
+
+        }}
+    );
+    const vm = new Vue( {
+        el:'#root',
+        components: {
+            xuexiao:school
+
+        },
+        data: {
+            name:"a"
+        }
+    })
+
+
+</script>
+</html>

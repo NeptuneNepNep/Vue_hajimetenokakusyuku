@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+</head>
+<body>
+<div id="root"></div>
+
+</body>
+
+<script src="../vue.js"></script>
+<script>
+    //vuecomponent 对象是vc
+    //this 的指向 data函数 methods watch computed函数的this是vc势力
+    //vue配置中this指向vue实例对象 vm管理着多个vc
+    const school = Vue.extend({
+
+        template:`
+            <div><p>{{name}}</p></div>
+        `,
+        data() {
+            return {
+                name:'你好'
+            }
+
+        }}
+    );
+    new Vue({
+       el:'#root',
+       data:{msg:'你好'}
+
+
+    });
+    console.log(school.prototype===Vue.prototype)
+</script>
+</html>
